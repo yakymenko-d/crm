@@ -10,7 +10,7 @@ import {MaterialService} from '../../shared/classes/material.service'
 @Component({
   selector: 'app-order-positions',
   templateUrl: './order-positions.component.html',
-  styleUrls: ['./order-positions.component.css']
+  styleUrls: ['./order-positions.component.scss']
 })
 export class OrderPositionsComponent implements OnInit {
 

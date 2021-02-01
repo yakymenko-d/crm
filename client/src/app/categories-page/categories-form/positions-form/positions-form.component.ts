@@ -7,7 +7,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
 @Component({
   selector: 'app-positions-form',
   templateUrl: './positions-form.component.html',
-  styleUrls: ['./positions-form.component.css']
+  styleUrls: ['./positions-form.component.scss']
 })
 export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input('categoryId') categoryId: string

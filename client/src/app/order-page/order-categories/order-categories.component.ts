@@ -6,7 +6,7 @@ import {Category} from '../../shared/interfaces'
 @Component({
   selector: 'app-order-categories',
   templateUrl: './order-categories.component.html',
-  styleUrls: ['./order-categories.component.css']
+  styleUrls: ['./order-categories.component.scss']
 })
 export class OrderCategoriesComponent implements OnInit {
 

@@ -5,7 +5,7 @@ import {MaterialInstance, MaterialService} from '../../shared/classes/material.s
 @Component({
   selector: 'app-history-list',
   templateUrl: './history-list.component.html',
-  styleUrls: ['./history-list.component.css']
+  styleUrls: ['./history-list.component.scss']
 })
 export class HistoryListComponent implements OnDestroy, AfterViewInit {
   @Input() orders: Order[]

@@ -1,0 +1,16 @@
+{
+  "AUTH": {
+    "sign-in": "Sign in",
+    "sign-up": "Sign up",
+    "sign-out": "Sign out",
+    "email": "Email",
+    "password": "Password"
+  },
+  "DASHBOARD": {
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "history": "History",
+    "add-order": "Add order",
+    "offers": "Offers"
+  }
+}

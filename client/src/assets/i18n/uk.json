@@ -1,0 +1,16 @@
+{
+  "AUTH": {
+    "sign-in": "Увійти",
+    "sign-up": "Реєстрація",
+    "sign-out": "Вийти",
+    "email": "Email",
+    "password": "Пароль"
+  },
+  "DASHBOARD": {
+    "overview": "Огляд",
+    "analytics": "Аналітика",
+    "history": "Історія",
+    "add-order": "Додати замовлення",
+    "offers": "Асортимент"
+  }
+}

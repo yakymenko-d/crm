@@ -1,15 +1,15 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core'
-import {Router, NavigationEnd} from '@angular/router'
-import {MaterialInstance, MaterialService} from '../shared/classes/material.service'
-import {OrderService} from './order.service'
-import {Order, OrderPosition} from '../shared/interfaces'
-import {OrdersService} from '../shared/services/orders.service'
-import {Subscription} from 'rxjs'
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Router, NavigationEnd } from '@angular/router'
+import { MaterialInstance, MaterialService } from '../shared/classes/material.service'
+import { OrderService } from './order.service'
+import { Order, OrderPosition } from '../shared/interfaces'
+import { OrdersService } from '../shared/services/orders.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
-  styleUrls: ['./order-page.component.css'],
+  styleUrls: ['./order-page.component.scss'],
   providers: [OrderService]
 })
 export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -21,8 +21,8 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
   pending = false
 
   constructor(private router: Router,
-              public order: OrderService,
-              private ordersService: OrdersService) {
+    public order: OrderService,
+    private ordersService: OrdersService) {
   }
 
   ngOnInit() {

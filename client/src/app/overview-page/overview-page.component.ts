@@ -7,7 +7,7 @@ import {MaterialInstance, MaterialService} from '../shared/classes/material.serv
 @Component({
   selector: 'app-overview-page',
   templateUrl: './overview-page.component.html',
-  styleUrls: ['./overview-page.component.css']
+  styleUrls: ['./overview-page.component.scss']
 })
 export class OverviewPageComponent implements OnInit, OnDestroy, AfterViewInit {
 

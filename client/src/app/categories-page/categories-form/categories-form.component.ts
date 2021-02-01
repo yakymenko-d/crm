@@ -10,7 +10,7 @@ import {Category} from '../../shared/interfaces'
 @Component({
   selector: 'app-categories-form',
   templateUrl: './categories-form.component.html',
-  styleUrls: ['./categories-form.component.css']
+  styleUrls: ['./categories-form.component.scss']
 })
 export class CategoriesFormComponent implements OnInit {
 

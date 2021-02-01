@@ -7,7 +7,7 @@ import {Subscription} from 'rxjs'
 @Component({
   selector: 'app-analytics-page',
   templateUrl: './analytics-page.component.html',
-  styleUrls: ['./analytics-page.component.css']
+  styleUrls: ['./analytics-page.component.scss']
 })
 export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
 
