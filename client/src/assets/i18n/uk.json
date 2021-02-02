@@ -4,7 +4,12 @@
     "sign-up": "Реєстрація",
     "sign-out": "Вийти",
     "email": "Email",
-    "password": "Пароль"
+    "password": "Пароль",
+    "email-required": "Email не може бути пустим",
+    "uncorrect-email": "Будь ласка, введіть коректний email",
+    "password-required": "Пароль не може бути пустим",
+    "password-should-contain-1": "Пароль має бути більше",
+    "password-should-contain-2": "символів. Введено"
   },
   "DASHBOARD": {
     "overview": "Огляд",

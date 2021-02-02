@@ -4,7 +4,13 @@
     "sign-up": "Sign up",
     "sign-out": "Sign out",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "email-required": "Email required",
+    "uncorrect-email": "Please enter a valid email address",
+    "password-required": "Password required",
+    "password-should-contain-1": "Password should contain",
+    "password-should-contain-2": "characters. Entered",
+    "create-account": "Create account"
   },
   "DASHBOARD": {
     "overview": "Overview",

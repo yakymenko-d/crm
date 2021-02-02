@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <div class="nav-wrapper grey darken-1">
     <a routerLink="/" class="brand-logo">Own CRM</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -10,8 +10,32 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
 
-<div class="auth-block">
-  <router-outlet></router-outlet>
+<div class="auth">
+  <div class="wrap">
+    <div class="auth-left"></div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-right_languages">
+      <img
+        src="../../../../assets/icons/languages/en.png"
+        class="auth-right_languages-lang"
+        alt="English language"
+        (click)="setLanguage('en')">
+      <img
+        src="../../../../assets/icons/languages/ua.png"
+        class="auth-right_languages-lang"
+        alt="Українська мова"
+        (click)="setLanguage('uk')">
+      <img
+        src="../../../../assets/icons/languages/ru.png"
+        class="auth-right_languages-lang"
+        alt="Русский язык"
+        (click)="setLanguage('ru')">
+    </div>
+    <div class="auth-right_block">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

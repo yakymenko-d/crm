@@ -4,7 +4,12 @@
     "sign-up": "Регистрация",
     "sign-out": "Выйти",
     "email": "Email",
-    "password": "Пароль"
+    "password": "Пароль",
+    "email-required": "Email не может быть пустым",
+    "uncorrect-email": "Пожалуйста, введите корректный email",
+    "password-required": "Пароль не может быть пустым",
+    "password-should-contain-1": "Пароль должен быть больше",
+    "password-should-contain-2": "символов. Введено"
   },
   "DASHBOARD": {
     "overview": "Обзор",

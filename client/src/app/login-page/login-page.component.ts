@@ -1,28 +1,41 @@
-import {Component, OnDestroy, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {AuthService} from '../shared/services/auth.service'
-import {Subscription} from 'rxjs'
-import {ActivatedRoute, Params, Router} from '@angular/router'
-import {MaterialService} from '../shared/classes/material.service'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { AuthService } from '../shared/services/auth.service'
+import { Subscription } from 'rxjs'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+import { MaterialService } from '../shared/classes/material.service'
+import { EMAIL_VALIDATOR } from '../constants/general.constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  host: {
+    class: 'w100p'
+  }
 })
+
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
-  aSub: Subscription
+  form: FormGroup;
+  aSub: Subscription;
+  public lang: string;
 
-  constructor(private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) {
+    this.lang = this.translate.currentLang;
+    console.log(this.lang);
+    
   }
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.pattern(EMAIL_VALIDATOR)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
 
@@ -54,5 +67,4 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 }
