@@ -1,30 +1,78 @@
-<ul class="sidenav sidenav-fixed a-sidenav">
-  <h4>Own CRM</h4>
+<div class="d-flex w100p h100vh">
+  <div class="sidebar">
+    <!-- LOGO -->
+    <div class="sidebar-title">
+      <img
+        src="../../../../assets/icons/android-chrome-192x192.png"
+        alt="Logo"
+        class="sidebar-title_img">
+      <span class="ml10">FlyMoney</span>
+    </div>
+    <!-- LOGO -->
 
-  <li
-    class="bold"
-    *ngFor="let link of links"
-    routerLinkActive="active">
-    <a
-      [routerLink]="[link.url]"
-      class="waves-effect waves-orange">
-      {{ link.name | translate}}
-    </a>
-  </li>
+    <!-- USER -->
+    <div class="sidebar-user">
+      <div
+        [innerHtml]="avatarIcon | safe"
+        class="sidebar-user_img"></div>
+      <p class="sidebar-user_name">Elon Mask</p>
+      <p class="sidebar-user_position">Martian</p>
+      <div class="sidebar-user_actions">
+        <div
+          [innerHtml]="settingsIcon | safe"
+          class="sidebar-user_actions-icon"></div>
+        <div
+          [innerHtml]="(screenLocked ? lockIcon : unlockIcon) | safe"
+          (click)="lockScreen()"
+          class="sidebar-user_actions-icon"></div>
+      </div>
+    </div>
+    <!-- USER -->
 
-  <li class="bold last">
-    <a
-      href="#"
-      class="waves-effect waves-orange"
-      (click)="logout($event)">
-      {{ "AUTH.sign-out" | translate }}
-    </a>
-  </li>
-</ul>
+    <!-- MENU ITEMS -->
+    <div class="sidebar-item">
+      <span class="sidebar-item_title">
+        navigation
+      </span>
+    </div>
+    <div
+      class="sidebar-item"
+      *ngFor="let link of links"
+      routerLinkActive="sidebar-item_active">
+      <div
+        [innerHtml]="link.img | safe"
+        class="sidebar-item_icon"></div>
+      <a
+        [routerLink]="!screenLocked ? [link.url] : null"
+        (click)="link.active = true"
+        class="sidebar-item_text">
+        {{ link.name | translate}}
+      </a>
+    </div>
+    <!-- MENU ITEMS -->
 
-<main class="content">
-  <router-outlet></router-outlet>
-</main>
+    <!-- SIGN OUT -->
+    <div class="sidebar-item">
+      <div
+        [innerHtml]="exitIcon | safe"
+        class="sidebar-item_icon"></div>
+      <a
+        [routerLink]="'/login'"
+        class="sidebar-item_text"
+        (click)="logout($event)">
+        {{ "AUTH.sign-out" | translate }}
+      </a>
+    </div>
+    <!-- SIGN OUT -->
+  </div>
+
+  <main class="content">
+    <div [ngClass]="{'lock-screen': screenLocked}">
+      <app-header></app-header>
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
 
 <div
   class="fixed-action-btn"

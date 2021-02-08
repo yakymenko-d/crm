@@ -22,11 +22,16 @@
     <div class="form-inputs_wrapper">
       <input
         id="password"
+        [type]="showPassword ? 'text' : 'password'"
         formControlName="password"
-        type="password"
         class="form-inputs_input"
         [ngClass]="{'form-inputs_input-invalid': form.get('password').invalid && form.get('password').touched}"
         [placeholder]="'AUTH.password' | translate">
+      <span
+        class="form-inputs_input-action"
+        (click)="showPasswordAction()">
+        {{ (showPassword ? "AUTH.hide" : "AUTH.show") | translate }}
+      </span>
       <span
         class="form-inputs-helper"
         *ngIf="form.get('password').invalid && form.get('password').touched">
@@ -39,9 +44,11 @@
     </div>
   </div>
   <div class="form-action">
-    <p class="form-action_registration" [routerLink]="[lang, '/register']">
+    <a
+      class="form-action_registration"
+      (click)="changeAuthType()">
       {{ "AUTH.create-account" | translate }}
-    </p>
+    </a>
     <button
       type="submit"
       class="form-action_submit"

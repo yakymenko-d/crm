@@ -9,7 +9,24 @@
     "uncorrect-email": "Будь ласка, введіть коректний email",
     "password-required": "Пароль не може бути пустим",
     "password-should-contain-1": "Пароль має бути більше",
-    "password-should-contain-2": "символів. Введено"
+    "password-should-contain-2": "символів. Введено",
+    "create-account": "Створити акаунт",
+    "have-account": "У вас уже є акаунт?",
+    "show": "Показати",
+    "hide": "Приховати"
+  },
+  "TOAST": {
+    "TYPE": {
+      "error": "Помилка",
+      "warning": "Увага",
+      "success": "Чудово"
+    },
+    "password-incorrect": "Неправильний пароль",
+    "user-not-found": "Користувача не знайдено. Перевірте введені дані.",
+    "already-registered": "Користувач з таким Email уже зареєстрований.",
+    "can-login": "Тепер ви можете увійти в систему використовуючи свої данні.",
+    "first-login": "Спочатку авторизуйтесь в системі.",
+    "please-login": "Будь ласка, увійдіть в систему заново."
   },
   "DASHBOARD": {
     "overview": "Огляд",

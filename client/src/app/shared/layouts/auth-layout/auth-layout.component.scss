@@ -1,21 +1,36 @@
+@import "../../../../assets/style/variables";
+@import "../../../../assets/style/functions";
+
 .auth {
   width: 100%;
   height: 100vh;
   display: flex;
 
   &-left {
-    height: 100%;
     position: relative;
-    background-image: url('../../../../assets/images/auth-bg.png');
-    background-size: 80%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    height: 100%;
+    flex: 0 0 60%;
+    background-image: $auth-gradient;
+    transition: 0.1s ease-in-out;
+    z-index: 1;
+  
+    &_cover {
+      flex: 0 0 100%;
+    }
+
+    &_bg {
+      position: absolute;
+      top: 50%;
+      left: 120px;
+      width: 700px;
+      transform: translateY(-50%);
+    }
   }
 
   &-right {
     position: relative;
     flex: 0 1 40%;
-    background-color: #ffffff;
+    background-color: var(--background);
 
     &_languages {
       position: absolute;
@@ -47,9 +62,4 @@
       align-items: center;
     }
   }
-}
-
-.wrap {
-  flex: 0 0 60%;
-  background-image: linear-gradient(270deg, #388efb 0px, #2a67b8 200%);
 }

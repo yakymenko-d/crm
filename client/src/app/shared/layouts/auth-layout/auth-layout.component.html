@@ -1,20 +1,11 @@
-<!-- <nav>
-  <div class="nav-wrapper grey darken-1">
-    <a routerLink="/" class="brand-logo">Own CRM</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li routerLinkActive="active">
-        <a routerLink="/login">{{ "AUTH.sign-in" | translate }}</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/register">{{ "AUTH.sign-up" | translate }}</a>
-      </li>
-    </ul>
-  </div>
-</nav> -->
-
 <div class="auth">
-  <div class="wrap">
-    <div class="auth-left"></div>
+  <div
+    class="auth-left"
+    [ngClass]="{'auth-left_cover': updatePage}">
+    <img
+      src="../../../../assets/icons/auth-bg.png"
+      alt="Background"
+      class="auth-left_bg">
   </div>
   <div class="auth-right">
     <div class="auth-right_languages">
@@ -33,9 +24,11 @@
         class="auth-right_languages-lang"
         alt="Русский язык"
         (click)="setLanguage('ru')">
+
+      <theme-toggler></theme-toggler>
     </div>
     <div class="auth-right_block">
-      <router-outlet></router-outlet>
+      <router-outlet (activate)="changedAuthType($event)"></router-outlet>
     </div>
   </div>
 </div>

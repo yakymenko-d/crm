@@ -22,12 +22,14 @@ module.exports.login = async function (req, res) {
    } else {
      // Incorract password
      res.status(401).json({
-       message: 'Password is incorrect.'
+       message: 'Password is incorrect.',
+       translate: 'TOAST.password-incorrect'
      })
    }
   } else {
     res.status(404).json({
-      message: 'User not found.'
+      message: 'User not found. Please, check your credentials.',
+      translate: 'TOAST.user-not-found'
     })
   }
 }
@@ -37,7 +39,8 @@ module.exports.register = async function (req, res) {
 
   if (candidate) {
     res.status(409).json({
-      message: 'This email is already registered.'
+      message: 'This email is already registered.',
+      translate: 'TOAST.already-registered'
     })
   } else {
     const salt = bcrypt.genSaltSync(10)

@@ -10,7 +10,23 @@
     "password-required": "Password required",
     "password-should-contain-1": "Password should contain",
     "password-should-contain-2": "characters. Entered",
-    "create-account": "Create account"
+    "create-account": "Create account",
+    "have-account": "Already have an account?",
+    "show": "Show",
+    "hide": "Hide"
+  },
+  "TOAST": {
+    "TYPE": {
+      "error": "Error",
+      "warning": "Warning",
+      "success": "Success"
+    },
+    "password-incorrect": "Password is incorrect.",
+    "user-not-found": "User not found. Please, check your credentials.",
+    "already-registered": "This email is already registered.",
+    "can-login": "Now you can log in using your credentials.",
+    "first-login": "First, log in to the system.",
+    "please-login": "Please login again."
   },
   "DASHBOARD": {
     "overview": "Overview",

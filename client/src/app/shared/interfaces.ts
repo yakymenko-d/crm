@@ -66,3 +66,9 @@ export interface AnalyticsChartItem {
   order: number
   label: string
 }
+
+export interface ToastItem {
+  type: string,
+  text: string,
+  status: number
+}

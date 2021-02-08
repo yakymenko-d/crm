@@ -1,12 +1,55 @@
 // @import "~materialize-css/dist/css/materialize.min.css";
 @import "theme/styles.min.css";
 
-html, body {
+html, body, div, p, a {
   font-family: 'Nunito', sans-serif;
   margin: 0;
   padding: 0;
 }
 
+a, button {
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .w100p {
   width: 100%;
+}
+
+.h100p {
+  height: 100%;
+}
+
+.h100vh {
+  height: 100vh;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+// MARGINS
+.ml5 {
+  margin-left: 5px;
+}
+
+.ml10 {
+  margin-left: 10px;
 }

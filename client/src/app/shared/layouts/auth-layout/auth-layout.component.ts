@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -6,16 +6,23 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './auth-layout.component.html',
   styleUrls: ['./auth-layout.component.scss']
 })
-export class AuthLayoutComponent implements OnInit {
+export class AuthLayoutComponent {
+
+  public updatePage: boolean = false;
 
   constructor(
     private translate: TranslateService
   ) { }
 
-  ngOnInit() {
-  }
-
   setLanguage(lang: string) {
     this.translate.use(lang);
+    localStorage.setItem('systemLanguage', lang);
+  }
+
+  changedAuthType(res: boolean) {
+    this.updatePage = true;
+    setTimeout(() => {
+      this.updatePage = false
+    }, 500)
   }
 }

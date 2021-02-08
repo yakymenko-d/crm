@@ -1,0 +1,32 @@
+
+$main-color: #327CDB;
+$auth-gradient: linear-gradient(270deg, #388efb 0px, #2a67b8 200%);
+$black: #2b2b2b;
+$white: #ffffff;
+$green: #00BE4C;
+$yellow: #FAFD46;
+$red: #EA6565;
+$grey: #E4E8Ef;
+$dark-grey: #757575;
+
+.theme-wrapper {
+  --background: #ffffff;
+  --outletBackground: #ECEFF3;
+  --sidebarBackground: #ffffff;
+  --textColor: #2B2B2B;
+  --toastShadow: 0 0 28px rgba(0,0,0,0.1);
+  --menuHeaderColor: #ACB6BD;
+  --menuItemColor: #6C767D;
+  --infoCard: #F5F5F5;
+}
+
+$variables: (
+  --background: var(--background),
+  --outletBackground: var(--outletBackground),
+  --sidebarBackground: var(--sidebarBackground),
+  --textColor:  var(--textColor),
+  --toastShadow: var(--toastShadow),
+  --menuHeaderColor: var(--menuHeaderColor),
+  --menuItemColor: var(--menuItemColor),
+  --infoCard: var(--infoCard)
+);

@@ -1,0 +1,20 @@
+<div
+  class="toast"
+  *ngFor="let toast of toasts; let i = index"
+  [@toastAnimation]="'in'">
+  <div class="toast-wrap">
+    <div
+      class="toast-status"
+      [ngClass]="{
+        'toast-status_success': toast.type === 'success',
+        'toast-status_warning': toast.type === 'warning',
+        'toast-status_error': toast.type === 'error'}"></div>
+    <div class="d-flex flex-column justify-center h100p">
+      <p class="toast-title">{{ toast.typeTranslate | translate }}</p>
+      <p class="toast-description">{{ toast.translate | translate }}</p>
+    </div>
+    <div
+      (click)="removeToast(i)"
+      class="toast-close"></div>
+  </div>
+</div>
