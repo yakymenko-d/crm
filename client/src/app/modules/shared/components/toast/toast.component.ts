@@ -63,6 +63,6 @@ export class ToastComponent {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
+    this.destroy$.next(true);
   }
 }

@@ -1,5 +1,5 @@
-@import "../../../../assets/style/variables";
-@import "../../../../assets/style/functions";
+@import "../../../../../assets/style/variables";
+@import "../../../../../assets/style/functions";
 
 .sidebar {
   flex: 0 0 20%;
@@ -10,13 +10,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;
+    padding: 25px 25px 0;
     font-size: 22px;
     font-weight: bold;
     color: var(--textColor);
 
     &_img {
-      width: 30px;
+      width: 90%;
     }
   }
 
