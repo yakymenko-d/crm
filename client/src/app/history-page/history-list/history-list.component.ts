@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild} from '@angular/core'
-import {Order} from '../../shared/interfaces'
-import {MaterialInstance, MaterialService} from '../../shared/classes/material.service'
+import {Order} from '../../modules/shared/interfaces'
+import {MaterialInstance, MaterialService} from '../../modules/shared/classes/material.service'
 
 @Component({
   selector: 'app-history-list',

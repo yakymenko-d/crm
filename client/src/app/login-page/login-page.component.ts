@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { EMAIL_VALIDATOR } from '../constants/general.constants';
-import { AuthService } from '../shared/services/auth.service';
-import { ToastService } from '../shared/services/toast.service';
+import { AuthService } from '../modules/shared/services/auth.service';
+import { ToastService } from '../modules/shared/services/toast.service';
 
 @Component({
   selector: 'app-login-page',

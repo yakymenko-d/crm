@@ -23,18 +23,27 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { OrderPositionsComponent } from './order-page/order-positions/order-positions.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
-import { TokenInterceptor } from './shared/classes/token.interceptor';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-import { ToastComponent } from './shared/components/toast/toast.component';
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
-import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.component';
-import { TogglerComponent } from './shared/components/toggler/toggler.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { SafeHtmlPipe } from './shared/pipes/sanitizer/sanitizer.pipe';
+import { TokenInterceptor } from './modules/shared/classes/token.interceptor';
+import { LoaderComponent } from './modules/shared/components/loader/loader.component';
+import { ToastComponent } from './modules/shared/components/toast/toast.component';
+import { AuthLayoutComponent } from './modules/shared/layouts/auth-layout/auth-layout.component';
+import { SiteLayoutComponent } from './modules/shared/layouts/site-layout/site-layout.component';
+import { TogglerComponent } from './modules/shared/components/toggler/toggler.component';
+import { HeaderComponent } from './modules/shared/components/header/header.component';
+import { SafeHtmlPipe } from './modules/shared/pipes/sanitizer/sanitizer.pipe';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers } from './store';
 
 @NgModule({
   imports: [
     BrowserModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('app-state', reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 100,
+      logOnly: environment.production
+    }),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -47,7 +56,7 @@ import { SafeHtmlPipe } from './shared/pipes/sanitizer/sanitizer.pipe';
         deps: [HttpClient]
       }
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
     AppComponent,

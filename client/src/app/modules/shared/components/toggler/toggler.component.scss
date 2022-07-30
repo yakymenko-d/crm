@@ -33,7 +33,7 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-image: url(../../../../assets/icons/sun.png);
+  background-image: url(../../../../../assets/icons/sun.png);
   background-size: cover;
   transition: .4s;
 }
@@ -48,7 +48,7 @@ input:focus + .slider {
 
 input:checked + .slider:before {
   left: 30px;
-  background-image: url(../../../../assets/icons/moon.png);
+  background-image: url(../../../../../assets/icons/moon.png);
 }
 
 /* Rounded sliders */

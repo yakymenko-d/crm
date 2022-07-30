@@ -1,11 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {ActivatedRoute, Params, Router} from '@angular/router'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {CategoriesService} from '../../shared/services/categories.service'
+import {CategoriesService} from '../../modules/shared/services/categories.service'
 import {switchMap} from 'rxjs/operators'
 import {of} from 'rxjs'
-import {MaterialService} from '../../shared/classes/material.service'
-import {Category} from '../../shared/interfaces'
+import {MaterialService} from '../../modules/shared/classes/material.service'
+import {Category} from '../../modules/shared/interfaces'
 
 @Component({
   selector: 'app-categories-form',
