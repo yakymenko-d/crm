@@ -20,7 +20,6 @@ module.exports.login = async function (req, res) {
       token: `Bearer ${token}`
     })
    } else {
-     // Incorract password
      res.status(401).json({
        message: 'Password is incorrect.',
        translate: 'TOAST.password-incorrect'
