@@ -1,23 +1,23 @@
 <div *ngIf="categories$ | async as categories; else loader">
-  <div class="frow order-row" *ngIf="categories.length !== 0; else empty">
+  <div
+    class="row order-row categories"
+    *ngIf="categories.length !== 0; else empty"
+  >
     <div
       *ngFor="let category of categories"
-      class="card waves-effect pointer"
+      class="card waves-effect pointer categories-item"
       [routerLink]="['/order', category._id]"
     >
-      <div class="center">
-        <img
-          [src]="category.imageSrc"
-          class="responsive-img order-img"
-        >
+      <div class="categories-item_image-wrap">
+        <img [src]="category.imageSrc" class="categories-item_image" />
       </div>
-      <div class="card-content center p10">
-        <h5 class="m0">{{category.name}}</h5>
+      <div class="categories-item_text center p10">
+        <span class="m0">{{ category.name }}</span>
       </div>
     </div>
   </div>
   <ng-template #empty>
-    <div class="center">Категорий пока нет.</div>
+    <div class="center">{{ 'ORDERS.no-categories' | translate }}</div>
   </ng-template>
 </div>
 

@@ -2,7 +2,8 @@
 /*                                            VALIDATORS                                                */
 /*######################################################################################################*/
 
-export const EMAIL_VALIDATOR = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+export const EMAIL_VALIDATOR =
+  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 export const PHONE_VALIDATOR = /^\+?[0-9]+$/;
 export const NAME_VALIDATOR = /^[a-zA-Z\-\'\.\_\’\`\"\ ]*$/;
 export const DATE_VALIDATOR = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/;

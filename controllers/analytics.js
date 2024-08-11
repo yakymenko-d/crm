@@ -6,7 +6,11 @@ module.exports.overview = async function(req, res) {
   try {  
     const allOrders = await Order.find({user: req.user.id}).sort({date: 1});
     const ordersMap = getOrdersMap(allOrders);
+    const todayOrders = ordersMap[moment().format('DD.MM.YYYY')] || [];
     const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')] || [];
+
+    // Today orders quantity
+    const todayOrdersQuantity = todayOrders.length;
 
     // Yesterday orders quantity
     const yesterdayOrdersQuantity = yesterdayOrders.length;
@@ -20,8 +24,11 @@ module.exports.overview = async function(req, res) {
     // Orders/Day
     const ordersPerDay = (totalOrders / daysNumber).toFixed(0);
 
-    //Ordrers quantity percent (((yesterday orders quantity / orders per day) - 1) * 100)
-    const ordersPercent = (((yesterdayOrdersQuantity / ordersPerDay) - 1) * 100).toFixed(2);
+    //Today ordrers quantity percent (((today orders quantity / orders per day) - 1) * 100)
+    const todayOrdersPercent = (((todayOrdersQuantity / ordersPerDay) - 1) * 100).toFixed(2);
+
+    //Yesterday ordrers quantity percent (((yesterday orders quantity / orders per day) - 1) * 100)
+    const yesterdayOrdersPercent = (((yesterdayOrdersQuantity / ordersPerDay) - 1) * 100).toFixed(2);
 
     // Total gain
     const totalgain = calculatePrice(allOrders);
@@ -29,30 +36,57 @@ module.exports.overview = async function(req, res) {
     // Gain per day
     const gainPerDay = totalgain / daysNumber;
 
+    // Today gain
+    const todayGain = calculatePrice(todayOrders);
+
     // Yesterday gain
     const yesterdayGain = calculatePrice(yesterdayOrders);
 
-    // Gain percent
-    const gainPercent = (((yesterdayGain / gainPerDay) - 1) * 100).toFixed(2);
+    // Today gain percent
+    const todayGainPercent = (((todayGain / gainPerDay) - 1) * 100).toFixed(2);
 
-    // Compare gain
-    const compareGain = (yesterdayGain - gainPerDay).toFixed(2);
+    // Yesterday gain percent
+    const yesterdayGainPercent = (((yesterdayGain / gainPerDay) - 1) * 100).toFixed(2);
 
-    // Compare orders quantity
-    const compareOrdersQuantity = (yesterdayOrdersQuantity - ordersPerDay).toFixed(2);
+    // Compare today gain
+    const compareTodayGain = (todayGain - gainPerDay).toFixed(2);
+
+    // Compare yesterday gain
+    const compareYesterdayGain = (yesterdayGain - gainPerDay).toFixed(2);
+
+    // Compare today orders quantity
+    const compareTodayOrdersQuantity = (todayOrdersQuantity - ordersPerDay).toFixed(2);
+
+    // Compare yesterday orders quantity
+    const compareYesterdayOrdersQuantity = (yesterdayOrdersQuantity - ordersPerDay).toFixed(2);
 
     res.status(200).json({
-      gain: {
-        percent: Math.abs(+gainPercent),
-        compare: Math.abs(+compareGain),
-        yesterday: +yesterdayGain,
-        isHigher: +gainPercent > 0
-      },
-      orders: {
-        percent: Math.abs(+ordersPercent),
-        compare: Math.abs(+compareOrdersQuantity),
-        yesterday: +yesterdayOrdersQuantity,
-        isHigher: +ordersPercent > 0
+      today: {
+        gain: {
+          percent: Math.abs(+todayGainPercent),
+          compare: Math.abs(+compareTodayGain),
+          dayGain: +todayGain,
+          isHigher: +todayGainPercent > 0
+        },
+        orders: {
+          percent: Math.abs(+todayOrdersPercent),
+          compare: Math.abs(+compareTodayOrdersQuantity),
+          dayOrders: +todayOrdersQuantity,
+          isHigher: +todayOrdersPercent > 0
+        }
+      }, yesterday: {
+        gain: {
+          percent: Math.abs(+yesterdayGainPercent),
+          compare: Math.abs(+compareYesterdayGain),
+          dayGain: +yesterdayGain,
+          todayIsHigher: +yesterdayGainPercent > 0
+        },
+        orders: {
+          percent: Math.abs(+yesterdayOrdersPercent),
+          compare: Math.abs(+compareYesterdayOrdersQuantity),
+          dayOrders: +yesterdayOrdersQuantity,
+          isHigher: +yesterdayOrdersPercent > 0
+        }
       }
     })
   } catch (e) {
@@ -64,6 +98,7 @@ module.exports.analytics = async function(req, res) {
   try {
     const allOrders = await Order.find({user: req.user.id}).sort({date: 1});
     const ordersMap = getOrdersMap(allOrders);
+    // console.log(ordersMap);
 
     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
     
@@ -85,9 +120,9 @@ function getOrdersMap(orders = []) {
   orders.forEach(order => {
     const date = moment(order.date).format('DD.MM.YYYY')
 
-    if (date === moment().format('DD.MM.YYYY')) {
-      return
-    }
+    // if (date === moment().format('DD.MM.YYYY')) {
+    //   return
+    // }
 
     if (!daysOrders[date]) {
       daysOrders[date] = []

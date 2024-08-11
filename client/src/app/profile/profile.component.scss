@@ -1,0 +1,29 @@
+.dn {
+  display: none;
+}
+
+.h200 {
+  height: 200px;
+}
+
+.categories {
+  &-wrap {
+    display: flex;
+  }
+
+  &-image {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+
+    img {
+      margin-bottom: 12px;
+    }
+  }
+
+  &-save {
+    display: flex;
+    justify-content: end;
+  }
+}

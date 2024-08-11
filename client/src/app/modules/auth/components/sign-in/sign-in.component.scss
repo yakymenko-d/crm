@@ -1,0 +1,115 @@
+@import '../../assets/style/variables';
+@import '../../assets/style/functions';
+
+.form {
+  width: 80%;
+  margin: 0 auto;
+
+  &-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--textColor);
+  }
+
+  &-inputs {
+    display: flex;
+    flex-direction: column;
+
+    &_wrapper {
+      margin-top: 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    &_input {
+      width: -webkit-fill-available;
+      height: 45px;
+      outline: none;
+      border: 1px solid $grey;
+      border-radius: 3px;
+      background: var(--background);
+      color: var(--textColor);
+      font-size: 16px;
+      font-weight: 300;
+      padding: 0 10px;
+      transition: 0.3s;
+
+      &::placeholder {
+        color: $dark-grey;
+        transition: 0.3s;
+      }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px var(--background) inset;
+        -webkit-text-fill-color: var(--textColor);
+      }
+
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 30px var(--background) inset;
+        -webkit-text-fill-color: var(--textColor);
+        border-color: $main-color;
+      }
+
+      &:-webkit-autofill::first-line {
+        font-size: 16px;
+      }
+
+      &-invalid {
+        border-color: $red;
+      }
+
+      &-action {
+        color: $main-color;
+        font-size: 14px;
+        font-weight: bold;
+        position: absolute;
+        right: 12px;
+        cursor: pointer;
+      }
+    }
+
+    &-helper {
+      position: absolute;
+      color: $red;
+      top: -11px;
+      left: 7px;
+      background-color: var(--background);
+      padding: 0 4px;
+    }
+  }
+
+  &-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    &_text {
+      font-size: 16px;
+      color: var(--textColor);
+      cursor: default;
+    }
+
+    &_registration {
+      font-size: 16px;
+      color: $main-color;
+      font-weight: bold;
+    }
+
+    &_submit {
+      padding: 10px 24px;
+      color: $white;
+      font-size: 16px;
+      background-color: $main-color;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}

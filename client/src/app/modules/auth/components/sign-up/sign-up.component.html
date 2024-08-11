@@ -1,0 +1,82 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-inputs">
+    <span class="form-title">{{ 'AUTH.sign-up' | translate }}</span>
+    <div class="form-inputs_wrapper">
+      <input
+        id="email"
+        formControlName="email"
+        class="form-inputs_input"
+        [ngClass]="{
+          'form-inputs_input-invalid':
+            form.get('email').invalid && form.get('email').touched
+        }"
+        [placeholder]="'AUTH.email' | translate"
+        autocomplete="off"
+      />
+      <span
+        class="form-inputs-helper"
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+      >
+        <span *ngIf="form.get('email').errors['required']">{{
+          'AUTH.email-required' | translate
+        }}</span>
+        <span *ngIf="!form.get('email').errors['required']">{{
+          'AUTH.uncorrect-email' | translate
+        }}</span>
+      </span>
+    </div>
+    <div class="form-inputs_wrapper">
+      <input
+        id="password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+        class="form-inputs_input"
+        [ngClass]="{
+          'form-inputs_input-invalid':
+            form.get('password').invalid && form.get('password').touched
+        }"
+        [placeholder]="'AUTH.password' | translate"
+        autocomplete="off"
+      />
+      <span class="form-inputs_input-action" (click)="showPasswordAction()">
+        {{ (showPassword ? 'AUTH.hide' : 'AUTH.show') | translate }}
+      </span>
+      <span
+        class="form-inputs-helper"
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+      >
+        <span *ngIf="form.get('password').errors['required']">{{
+          'AUTH.password-required' | translate
+        }}</span>
+        <span
+          *ngIf="
+            form.get('password').errors['minlength'] &&
+            form.get('password').errors['minlength']['requiredLength']
+          "
+        >
+          {{ 'AUTH.password-should-contain-1' | translate }}
+          {{ form.get('password').errors['minlength']['requiredLength'] }}
+          {{ 'AUTH.password-should-contain-2' | translate }}
+          {{ form.get('password').errors['minlength']['actualLength'] }}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="form-action">
+    <div class="d-flex align-center">
+      <p class="form-action_text">
+        {{ 'AUTH.have-account' | translate }}
+      </p>
+      <a class="form-action_registration ml10" (click)="changeAuthType()">
+        {{ 'AUTH.sign-in' | translate }}
+      </a>
+    </div>
+    <button
+      type="submit"
+      class="form-action_submit"
+      [disabled]="form.invalid || form.disabled"
+    >
+      {{ 'AUTH.create-account' | translate }}
+    </button>
+  </div>
+</form>

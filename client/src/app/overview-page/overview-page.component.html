@@ -1,83 +1,212 @@
-<div class="page-title">
-  <h4>
-    Обзор за вчера
-    ({{yesterday | date:'dd.MM.yyyy'}})
-    <i class="material-icons black-text pointer" (click)="openInfo()">
-      info_outline
-    </i>
-  </h4>
-</div>
+<div class="page-wrap">
+  <div class="page-title">
+    <h4 class="page-title_header">
+      {{ 'OVERVIEW.today-overview' | translate }}
+      ({{ today | date: 'dd.MM.yyyy' }})
+      <!-- <i class="material-icons pointer" (click)="openInfo()">
+        info_outline
+      </i> -->
+    </h4>
+  </div>
 
-<div
-  class="row"
-  *ngIf="data$ | async as data; else loader"
->
-  <div class="col s12 l6">
-    <div class="card light-blue lighten-2 white-text">
-      <div class="card-content">
-        <span class="card-title">Выручка:</span>
-        <h3>{{data.gain.yesterday}} руб.</h3>
-        <h3
-          class="m0 mb1"
-          [ngClass]="{
-            'green-text text-darken-2': data.gain.isHigher,
-            'red-text': !data.gain.isHigher
-          }"
-        >
-          <i class="material-icons">
-            {{data.gain.isHigher ? 'arrow_upward' : 'arrow_downward'}}
-          </i>
-          {{data.gain.percent}}%
-        </h3>
-        <p>
-          Выручка вашего бизнеса вчера на
-          {{data.gain.percent}}%
-          {{data.gain.isHigher ? 'выше' : 'ниже'}}
-          среднего:
-          {{data.gain.compare}}
-          руб. в день
-        </p>
+  <div class="row page-content" *ngIf="data$ | async as data; else loader">
+    <div class="col s12 l6">
+      <div class="card light-blue lighten-2 white-text">
+        <div class="card-content">
+          <span class="card-title">{{ 'OVERVIEW.income' | translate }}:</span>
+          <h3>{{ data.today.gain.dayGain }} $</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.today.gain.isHigher,
+              'red-text': !data.today.gain.isHigher
+            }"
+            >
+            <i class="material-icons">
+              {{
+                data.today.gain.isHigher
+                  ? 'arrow_upward'
+                  : data.today.gain.percent === 0
+                    ? 'arrow_forward'
+                    : 'arrow_downward'
+              }}
+            </i>
+            {{ data.today.gain.percent }}%
+          </h3>
+          <p>
+            {{ 'OVERVIEW.income-1-today' | translate }}
+            {{ data.today.gain.percent }}%
+            {{
+              data.today.gain.isHigher
+                ? ('OVERVIEW.income-2' | translate)
+                : ('OVERVIEW.income-3' | translate)
+            }}
+            {{ 'OVERVIEW.income-4' | translate }}
+            {{ data.today.gain.compare }}
+            $ {{ 'OVERVIEW.income-5' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 l6">
+      <div class="card orange lighten-2 white-text">
+        <div class="card-content">
+          <span class="card-title">{{ 'OVERVIEW.orders' | translate }}:</span>
+          <h3>
+            {{ data.today.orders.dayOrders }}
+            {{ 'OVERVIEW.orders-1' | translate }}
+          </h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.today.orders.isHigher,
+              'red-text': !data.today.orders.isHigher
+            }"
+            >
+            <i class="material-icons">
+              {{
+                data.today.orders.isHigher
+                  ? 'arrow_upward'
+                  : data.today.orders.percent === 0
+                    ? 'arrow_forward'
+                    : 'arrow_downward'
+              }}
+            </i>
+            {{ data.today.orders.percent }}%
+          </h3>
+          <p>
+            {{ 'OVERVIEW.number-of-orders-today' | translate }}
+            {{ data.today.orders.percent }}%
+            {{
+              data.today.orders.isHigher
+                ? ('OVERVIEW.number-of-orders-1' | translate)
+                : ('OVERVIEW.number-of-orders-2' | translate)
+            }}
+            {{ 'OVERVIEW.number-of-orders-3' | translate }}
+            {{ data.today.orders.compare }}
+            {{ 'OVERVIEW.number-of-orders-4' | translate }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col s12 l6">
-    <div class="card orange lighten-2 white-text">
-      <div class="card-content">
-        <span class="card-title">Заказы:</span>
-        <h3>{{data.orders.yesterday}} зак.</h3>
-        <h3
-          class="m0 mb1"
-          [ngClass]="{
-            'green-text text-darken-2': data.orders.isHigher,
-            'red-text': !data.orders.isHigher
-          }"
-        >
-          <i class="material-icons">
-            {{data.orders.isHigher ? 'arrow_upward' : 'arrow_downward'}}
-          </i>
-          {{data.orders.percent}}%
-        </h3>
-        <p>
-          Число заказов вчера на {{data.orders.percent}}%
-          {{data.orders.isHigher ? 'выше' : 'ниже'}}
-          среднего значения:
-          {{data.orders.compare}}
-          зак. в день
-        </p>
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>
+
+  <!-- <div class="tap-target" data-target="menu" #tapTarget>
+    <div class="tap-target-content">
+      <h5>Зачем нужна эта страница?</h5>
+      <p>Страница “Обзор” покажет динамику продаж за предыдущий день. Сравнение со средним значениями поможет вам понять, как идут дела у Вашего бизнеса.</p>
+    </div>
+  </div> -->
+</div>
+
+<div class="page-wrap">
+  <div class="page-title">
+    <h4 class="page-title_header">
+      {{ 'OVERVIEW.yesterday-overview' | translate }} ({{
+        yesterday | date: 'dd.MM.yyyy'
+      }})
+      <!-- <i class="material-icons pointer" (click)="openInfo()">
+        info_outline
+      </i> -->
+    </h4>
+  </div>
+
+  <div class="row page-content" *ngIf="data$ | async as data; else loader">
+    <div class="col s12 l6">
+      <div class="card light-blue lighten-2 white-text">
+        <div class="card-content">
+          <span class="card-title">{{ 'OVERVIEW.income' | translate }}:</span>
+          <h3>{{ data.yesterday.gain.dayGain }}$</h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="[{
+              'green-text text-darken-2': data.yesterday.gain.isHigher,
+              'red-text': !data.yesterday.gain.isHigher
+            }]"
+            >
+            <i class="material-icons">
+              {{
+                data.yesterday.gain.isHigher
+                  ? 'arrow_upward'
+                  : data.yesterday.gain.percent === 0
+                    ? 'arrow_forward'
+                    : 'arrow_downward'
+              }}
+            </i>
+            {{ data.yesterday.gain.percent }}%
+          </h3>
+          <p>
+            {{ 'OVERVIEW.income-1' | translate }}
+            {{ data.yesterday.gain.percent }}%
+            {{
+              data.yesterday.gain.isHigher
+                ? ('OVERVIEW.income-2' | translate)
+                : ('OVERVIEW.income-3' | translate)
+            }}
+            {{ 'OVERVIEW.income-4' | translate }}
+            {{ data.yesterday.gain.compare }}$
+            {{ 'OVERVIEW.income-5' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 l6">
+      <div class="card orange lighten-2 white-text">
+        <div class="card-content">
+          <span class="card-title">{{ 'OVERVIEW.orders' | translate }}:</span>
+          <h3>
+            {{ data.yesterday.orders.dayOrders }}
+            {{ 'OVERVIEW.orders-1' | translate }}
+          </h3>
+          <h3
+            class="m0 mb1"
+            [ngClass]="{
+              'green-text text-darken-2': data.yesterday.orders.isHigher,
+              'red-text': !data.yesterday.orders.isHigher
+            }"
+            >
+            <i class="material-icons">
+              {{
+                data.yesterday.orders.isHigher
+                  ? 'arrow_upward'
+                  : data.yesterday.orders.percent === 0
+                    ? 'arrow_forward'
+                    : 'arrow_downward'
+              }}
+            </i>
+            {{ data.yesterday.orders.percent }}%
+          </h3>
+          <p>
+            {{ 'OVERVIEW.number-of-orders' | translate }}
+            {{ data.yesterday.orders.percent }}%
+            {{
+              data.yesterday.orders.isHigher
+                ? ('OVERVIEW.number-of-orders-1' | translate)
+                : ('OVERVIEW.number-of-orders-2' | translate)
+            }}
+            {{ 'OVERVIEW.number-of-orders-3' | translate }}
+            {{ data.yesterday.orders.compare }}
+            {{ 'OVERVIEW.number-of-orders-4' | translate }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<ng-template #loader>
-  <app-loader></app-loader>
-</ng-template>
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>
 
-
-<div class="tap-target" data-target="menu" #tapTarget>
-  <div class="tap-target-content">
-    <h5>Зачем нужна эта страница?</h5>
-    <p>Страница “Обзор” покажет динамику продаж за предыдущий день. Сравнение со средним значениями поможет вам понять, как идут дела у Вашего бизнеса.</p>
-  </div>
+  <!-- <div class="tap-target" data-target="menu" #tapTarget>
+    <div class="tap-target-content">
+      <h5>Зачем нужна эта страница?</h5>
+      <p>Страница “Обзор” покажет динамику продаж за предыдущий день. Сравнение со средним значениями поможет вам понять, как идут дела у Вашего бизнеса.</p>
+    </div>
+  </div> -->
 </div>
