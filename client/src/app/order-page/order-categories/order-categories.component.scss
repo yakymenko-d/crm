@@ -1,0 +1,32 @@
+@import '../../../assets/style/variables';
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  height: 19vh;
+
+  &-item {
+    flex: 0 1 calc(20% - 10px);
+    margin: 5px;
+    background-color: var(--outletBackground);
+
+    &_image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &-wrap {
+        height: 75%;
+      }
+    }
+
+    &_text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 25%;
+      font-size: 20px;
+      color: var(--textColor);
+    }
+  }
+}

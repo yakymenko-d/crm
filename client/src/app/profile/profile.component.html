@@ -1,0 +1,136 @@
+<div class="page-wrap">
+  <div class="page-title">
+    <h4 class="page-title_header">
+      {{ 'PROFILE.profile' | translate }}
+    </h4>
+  </div>
+
+  <div class="page-content" *ngIf="user$ | async as user">
+    <form class="categories" [formGroup]="form" (ngSubmit)="onSubmit(user)">
+      <div class="categories-wrap">
+        <div class="center categories-image">
+          <img
+            *ngIf="imagePreview"
+            class="responsive-img h200"
+            [src]="imagePreview"
+          />
+          <div>
+            <!-- IMAGE -->
+            <input
+              type="file"
+              class="dn"
+              (change)="onFileUpload($event)"
+              #input
+            />
+            <button
+              (click)="triggerClick()"
+              [disabled]="form.disabled"
+              type="button"
+              class="waves-effect waves-light btn orange lighten-2 mb2"
+            >
+              <i class="material-icons left">backup</i>
+              {{ 'PROFILE.upload-image' | translate }}
+            </button>
+            <!-- IMAGE -->
+          </div>
+        </div>
+        <div class="categories-form">
+          <div>
+            <!-- FIRST NAME -->
+            <label for="pos-firstName">{{
+              'CATEGORIES.name-placeholder' | translate
+            }}</label>
+            <input
+              formControlName="firstName"
+              id="pos-firstName"
+              class="form-input"
+              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+            />
+            <span
+              *ngIf="
+                form.get('firstName').invalid && form.get('firstName').touched
+              "
+              class="helper-text red-text"
+            >
+              {{ 'CATEGORIES.name' | translate }}
+            </span>
+            <!-- FIRST NAME -->
+          </div>
+          <div>
+            <!-- LAST NAME -->
+            <label for="pos-lastName">{{
+              'CATEGORIES.name-placeholder' | translate
+            }}</label>
+            <input
+              formControlName="lastName"
+              id="pos-lastName"
+              class="form-input"
+              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+            />
+            <span
+              *ngIf="
+                form.get('lastName').invalid && form.get('lastName').touched
+              "
+              class="helper-text red-text"
+            >
+              {{ 'PROFILE.last-name' | translate }}
+            </span>
+            <!-- LAST NAME -->
+          </div>
+          <div>
+            <!-- ROLE -->
+            <label for="pos-role">{{
+              'CATEGORIES.name-placeholder' | translate
+            }}</label>
+            <input
+              formControlName="role"
+              id="pos-role"
+              class="form-input"
+              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+            />
+            <span
+              *ngIf="
+                form.get('role').invalid && form.get('role').touched
+              "
+              class="helper-text red-text"
+            >
+              {{ 'PROFILE.last-name' | translate }}
+            </span>
+            <!-- ROLE -->
+          </div>
+          <div>
+            <!-- THEME -->
+            <label for="pos-theme">{{
+              'CATEGORIES.name-placeholder' | translate
+            }}</label>
+            <input
+              formControlName="theme"
+              id="pos-theme"
+              class="form-input"
+              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+            />
+            <span
+              *ngIf="
+                form.get('theme').invalid && form.get('theme').touched
+              "
+              class="helper-text red-text"
+            >
+              {{ 'PROFILE.last-name' | translate }}
+            </span>
+            <!-- THEME -->
+          </div>
+        </div>
+      </div>
+
+      <div class="categories-save">
+        <button
+          type="submit"
+          [disabled]="form.invalid || form.disabled"
+          class="waves-effect waves-light btn green"
+        >
+          {{ 'CATEGORIES.save' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

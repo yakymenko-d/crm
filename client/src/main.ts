@@ -1,14 +1,14 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import 'materialize-css/dist/js/materialize.js';
 
 import { AppModule } from './app/app.module';
+import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
-
-import 'materialize-css/dist/js/materialize.js'
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.log(err));

@@ -1,21 +1,30 @@
-<div class="page-title">
-  <h4>Аналитика</h4>
+<div class="page-wrap">
+  <div class="page-title">
+    <h4 class="page-title_header">{{ 'ANALYTICS.analytics' | translate }}</h4>
+  </div>
+
+  <div [style.display]="pending ? 'none' : 'block'" class="page-content">
+    <div class="average-price">
+      <p>
+        {{ 'ANALYTICS.average-check' | translate }}
+        <strong>{{ average }} $</strong>
+      </p>
+    </div>
+
+    <div class="analytics-block pb3">
+      <h5>{{ 'ANALYTICS.profit' | translate }}</h5>
+      <div class="analytics-block_wrap">
+        <canvas #gain></canvas>
+      </div>
+    </div>
+
+    <div class="analytics-block">
+      <h5>{{ 'ANALYTICS.orders' | translate }}</h5>
+      <div class="analytics-block_wrap">
+        <canvas #order></canvas>
+      </div>
+    </div>
+  </div>
+
+  <app-loader *ngIf="pending"></app-loader>
 </div>
-
-<div [style.display]="pending ? 'none' : 'block'">
-  <div class="average-price">
-    <p>Средний чек <strong>{{average}} р.</strong></p>
-  </div>
-
-  <div class="analytics-block pb3">
-    <h5>Выручка</h5>
-    <canvas #gain></canvas>
-  </div>
-
-  <div class="analytics-block">
-    <h5>Заказы</h5>
-    <canvas #order></canvas>
-  </div>
-</div>
-
-<app-loader *ngIf="pending"></app-loader>

@@ -1,0 +1,41 @@
+@import '../../../../../assets/style/variables';
+@import '../../../../../assets/style/functions';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 8px;
+  // TEMPORARY(waiting for another header's components)
+  justify-content: flex-end;
+
+  &-page {
+    color: var(--textColor);
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+
+    &_user {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+
+      &-photo {
+        background: var(--textColor);
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+      }
+
+      &-name {
+        margin-left: 10px;
+        color: var(--menuItemColor);
+        font-size: 16px;
+      }
+    }
+  }
+}

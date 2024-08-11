@@ -1,0 +1,23 @@
+<div class="auth">
+  <div class="auth-left" [ngClass]="{ 'auth-left_cover': isUpdatePage }"></div>
+  <div class="auth-right">
+    <div class="auth-right_languages">
+      <img
+        src="../../../../assets/icons/languages/en.png"
+        class="auth-right_languages-lang"
+        alt="English language"
+        (click)="setLanguage('en')"
+      />
+      <img
+        src="../../../../assets/icons/languages/ua.png"
+        class="auth-right_languages-lang"
+        alt="Українська мова"
+        (click)="setLanguage('uk')"
+      />
+      <!-- <theme-toggler></theme-toggler> -->
+    </div>
+    <div class="auth-right_block">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

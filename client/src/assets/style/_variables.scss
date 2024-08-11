@@ -1,32 +1,31 @@
-
-$main-color: #327CDB;
+$main-color: #c13429;
 $auth-gradient: linear-gradient(270deg, #388efb 0px, #2a67b8 200%);
 $black: #2b2b2b;
 $white: #ffffff;
-$green: #00BE4C;
-$yellow: #FAFD46;
-$red: #EA6565;
-$grey: #E4E8Ef;
+$green: #00be4c;
+$yellow: #fafd46;
+$red: #ea6565;
+$grey: #e4e8ef;
 $dark-grey: #757575;
 
 .theme-wrapper {
   --background: #ffffff;
-  --outletBackground: #ECEFF3;
+  --outletBackground: #eceff3;
   --sidebarBackground: #ffffff;
-  --textColor: #2B2B2B;
-  --toastShadow: 0 0 28px rgba(0,0,0,0.1);
-  --menuHeaderColor: #ACB6BD;
-  --menuItemColor: #6C767D;
-  --infoCard: #F5F5F5;
+  --textColor: #2b2b2b;
+  --toastShadow: 0 0 28px rgba(0, 0, 0, 0.1);
+  --menuHeaderColor: #acb6bd;
+  --menuItemColor: #6c767d;
+  --infoCard: #f5f5f5;
 }
 
 $variables: (
   --background: var(--background),
   --outletBackground: var(--outletBackground),
   --sidebarBackground: var(--sidebarBackground),
-  --textColor:  var(--textColor),
+  --textColor: var(--textColor),
   --toastShadow: var(--toastShadow),
   --menuHeaderColor: var(--menuHeaderColor),
   --menuItemColor: var(--menuItemColor),
-  --infoCard: var(--infoCard)
+  --infoCard: var(--infoCard),
 );

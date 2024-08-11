@@ -1,5 +1,170 @@
+@import '../assets/style/variables';
+
 .toasts {
   position: absolute;
   z-index: 99;
   right: 0;
+}
+
+.page-wrap {
+  padding: 0 1rem;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+
+  &_header {
+    color: var(--textColor);
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    &-back {
+      margin-right: 6px;
+      height: 32px;
+    }
+  }
+
+  &_button {
+    border-radius: 2px;
+    background-color: $main-color;
+    color: $white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.page-content {
+  margin-top: 32px;
+  color: var(--textColor);
+  padding: 0;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_img {
+    background-color: $white;
+    border-radius: 50%;
+    padding: 35px;
+    margin-bottom: 20px;
+  }
+
+  &_message {
+    color: var(--textColor);
+    font-size: 24px;
+  }
+}
+
+.form {
+  &-input {
+    color: var(--textColor);
+  }
+}
+
+i {
+  color: var(--textColor);
+}
+
+.filter-input {
+  color: var(--textColor) !important;
+  border-color: var(--textColor) !important;
+
+  &:focus {
+    border-color: $main-color !important;
+    box-shadow: 0 1px $main-color !important;
+  }
+}
+
+.filter-label {
+  color: var(--textColor) !important;
+
+  &.active {
+    color: $main-color !important;
+  }
+}
+
+.datepicker-date-display {
+  background-color: $main-color !important;
+}
+
+.modal {
+  background-color: var(--outletBackground) !important;
+  color: var(--textColor);
+
+  &-footer {
+    background-color: var(--outletBackground) !important;
+  }
+
+  &-footer > button {
+    color: var(--textColor) !important;
+  }
+}
+
+table.highlight > tbody > tr {
+  &:hover {
+    background-color: var(--outletBackground) !important;
+  }
+}
+
+.mt12 {
+  margin-top: 12px;
+}
+
+.delete-btn {
+  color: $red;
+  cursor: pointer;
+}
+
+.table-last-item {
+  text-align: end;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+  font-size: 20px;
+}
+
+.collection {
+  margin: 0.5rem 0 1rem;
+  border: none;
+  overflow: hidden;
+  position: relative;
+
+  &-item {
+    background-color: var(--outletBackground);
+    border: 1px solid var(--background);
+    border-color: var(--background);
+    border-radius: 2px;
+    color: var(--textColor) !important;
+    margin-bottom: 0.5rem;
+    font-size: 20px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: var(--background) !important;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid var(--background) !important;
+    }
+  }
+}
+
+.color-red {
+  color: $red;
+}
+
+.input-field > input {
+  color: var(--textColor);
 }

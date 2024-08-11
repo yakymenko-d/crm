@@ -2,26 +2,36 @@
   <div class="fr">
     <div class="col order">
       <div class="input-field inline order-position-input">
-        <input type="number" id="number" min="1" [(ngModel)]="order">
-        <label for="number">Номер заказа</label>
+        <input
+          class="filter-input"
+          type="number"
+          id="number"
+          min="1"
+          [(ngModel)]="order"
+        />
+        <label class="filter-label" for="number">{{
+          'HISTORY.order-number' | translate
+        }}</label>
       </div>
     </div>
     <div class="col filter-pickers">
       <div class="input-field">
-        <input type="text" #start>
-        <label>Начало</label>
+        <input class="filter-input" type="text" #start />
+        <label class="filter-label">{{ 'HISTORY.start' | translate }}</label>
       </div>
 
       <div class="input-field">
-        <input type="text" #end>
-        <label>Конец</label>
+        <input class="filter-input" type="text" #end />
+        <label class="filter-label">{{ 'HISTORY.end' | translate }}</label>
       </div>
     </div>
   </div>
 
   <button
-    class="btn waves-effect wavers-light btn-small"
+    class="page-title_button"
     (click)="submitFilter()"
     [disabled]="!isValid"
-  >Применить фильтр</button>
+  >
+    {{ 'HISTORY.apply-filter' | translate }}
+  </button>
 </div>
