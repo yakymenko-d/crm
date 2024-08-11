@@ -1,9 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule,
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
@@ -42,65 +38,58 @@ import { UserEffects } from './store/effects/users.effects';
 import { environment } from '../environments/environment';
 import { reducers } from './store';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    StoreModule.forRoot({}),
-    StoreModule.forFeature('app-state', reducers),
-    StoreDevtoolsModule.instrument({
-      maxAge: 100,
-      logOnly: environment.production,
-    }),
-    EffectsModule.forRoot([UserEffects]),
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AuthModule,
-    LayoutModule,
-    SanitizerPipeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  declarations: [
-    AppComponent,
-    OverviewPageComponent,
-    AnalyticsPageComponent,
-    HistoryPageComponent,
-    OrderPageComponent,
-    CategoriesPageComponent,
-    LoaderComponent,
-    CategoriesFormComponent,
-    PositionsFormComponent,
-    OrderCategoriesComponent,
-    OrderPositionsComponent,
-    HistoryListComponent,
-    HistoryFilterComponent,
-    ToastComponent,
-    ProfileComponent,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useClass: TokenInterceptor,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        OverviewPageComponent,
+        AnalyticsPageComponent,
+        HistoryPageComponent,
+        OrderPageComponent,
+        CategoriesPageComponent,
+        LoaderComponent,
+        CategoriesFormComponent,
+        PositionsFormComponent,
+        OrderCategoriesComponent,
+        OrderPositionsComponent,
+        HistoryListComponent,
+        HistoryFilterComponent,
+        ToastComponent,
+        ProfileComponent,
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        StoreModule.forRoot({}),
+        StoreModule.forFeature('app-state', reducers),
+        StoreDevtoolsModule.instrument({
+            maxAge: 100,
+            logOnly: environment.production,
+        }),
+        EffectsModule.forRoot([UserEffects]),
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AuthModule,
+        LayoutModule,
+        SanitizerPipeModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+        }),
+    ], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            multi: true,
+            useClass: TokenInterceptor,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient) {
