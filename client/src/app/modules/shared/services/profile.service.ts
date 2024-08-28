@@ -10,12 +10,10 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
 
   getUser(): Observable<User> {
-    return this.http.get<User>(`/api/profile`);
+    return this.http.get<User>(`http://localhost:3000/api/profile`);
   }
 
-  update(userId: string, data): Observable<User> {
-    console.log(userId, data);
-    
-    return this.http.patch<User>(`/api/profile/${userId}`, data);
+  update(userId: string, data: Partial<User>): Observable<User> {
+    return this.http.patch<User>(`http://localhost:3000/api/profile/${userId}`, data);
   }
 }

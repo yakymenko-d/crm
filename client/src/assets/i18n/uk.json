@@ -91,6 +91,7 @@
     "apply": "Підтвердити",
     "add": "Додати",
     "no-items": "В цій категорії немає позицій",
+    "no-orders": "У вас поки що немає замовлень",
     "order-added-1": "Замовлення",
     "order-added-2": "було успішно додано",
     "position-added-1": "Додано"
@@ -126,6 +127,32 @@
     "last-name": "Прізвище",
     "role": "Роль",
     "theme": "Тема",
-    "upload-image": "Завантажити зображення"
+    "first-name-placeholder": "Гордон",
+    "last-name-placeholder": "Ремзі",
+    "role-placeholder": "Оберіть роль",
+    "theme-placeholder": "Темна",
+    "upload-image": "Завантажити зображення",
+    "required-field": "Це поле обовʼязкове"
+  },
+  "ROLES": {
+    "OWNER": "Власник",
+    "ADMIN": "Адміністратор",
+    "WAITER": "Офіціант",
+    "CHEF": "Шеф",
+    "COOKER": "Кухар",
+    "BARMEN": "Бармен"
+  },
+  "SETTINGS": {
+    "settings": "Налаштування",
+    "table-management": "Керування столами",
+    "generate-qr": "Згенерувати QR коди",
+    "download": "Завантажити як PDF",
+    "tables-count": "Кількість столиків",
+    "details": "Дані закладу",
+    "restaurant-name": "Назва закладу",
+    "url": "Посилання",
+    "select-colors": "Оберіть брендові кольори",
+    "main-color": "Головний колір",
+    "secondary-color": "Другорядний колір"
   }
 }

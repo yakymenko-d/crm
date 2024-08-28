@@ -9,6 +9,8 @@ const categoryRoutes = require('./routes/category')
 const orderRoutes = require('./routes/order')
 const positionRoutes = require('./routes/position')
 const profileRoutes = require('./routes/profile')
+const settingsRoutes = require('./routes/settings')
+const qrRoutes = require('./routes/qr')
 const keys = require('./config/keys')
 const app = express()
 
@@ -31,6 +33,8 @@ app.use('/api/category', categoryRoutes)
 app.use('/api/order', orderRoutes)
 app.use('/api/position', positionRoutes)
 app.use('/api/profile', profileRoutes)
+app.use('/api/settings', settingsRoutes)
+app.use('/api/qr', qrRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist/client'))

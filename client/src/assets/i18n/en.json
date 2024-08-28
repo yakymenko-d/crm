@@ -91,7 +91,7 @@
     "apply": "Apply",
     "add": "Add",
     "no-items": "You don't have any items in this category",
-    "no-categories": "You don't have any categories yet",
+    "no-orders": "You don't have any orders yet",
     "order-added-1": "Order",
     "order-added-2": "has been added",
     "position-added-1": "Added"
@@ -127,6 +127,32 @@
     "last-name": "Last Name",
     "role": "Role",
     "theme": "Theme",
-    "upload-image": "Upload image"
+    "first-name-placeholder": "Gordon",
+    "last-name-placeholder": "Ramsay",
+    "role-placeholder": "Select role",
+    "theme-placeholder": "Dark",
+    "upload-image": "Upload image",
+    "required-field": "It's required"
+  },
+  "ROLES": {
+    "OWNER": "OWNER",
+    "ADMIN": "ADMIN",
+    "WAITER": "WAITER",
+    "CHEF": "CHEF",
+    "COOKER": "COOKER",
+    "BARMEN": "BARMEN"
+  },
+  "SETTINGS": {
+    "settings": "Settings",
+    "table-management": "Table management",
+    "generate-qr": "Generate QR codes",
+    "download": "Download as PDF",
+    "tables-count": "Tables quantity",
+    "details": "Place details",
+    "restaurant-name": "Restaurant name",
+    "url": "URL",
+    "select-colors": "Select brand colors",
+    "main-color": "Main color",
+    "secondary-color": "Secondary color"
   }
 }

@@ -1,14 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { getMe, getMeFailure, getMeSuccess } from '../actions/users.action';
 
-export interface UserProfile {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
+import { User } from '@shared/interfaces';
 
 export interface UsersState {
-  me: UserProfile | null;
+  me: User | null;
 }
 
 export const initialUsersState: UsersState = {
@@ -22,8 +18,6 @@ const usersReducer = createReducer(
     isLoading: true,
   })),
   on(getMeSuccess, (state, { me }) => {
-    console.log(me);
-
     return {
       ...state,
       me: { ...me },

@@ -11,11 +11,11 @@ export class OrdersService {
   constructor(private http: HttpClient) {}
 
   create(order: Order): Observable<Order> {
-    return this.http.post<Order>('/api/order', order);
+    return this.http.post<Order>('http://localhost:3000/api/order', order);
   }
 
   fetch(params: any = {}): Observable<Order[]> {
-    return this.http.get<Order[]>('/api/order', {
+    return this.http.get<Order[]>('http://localhost:3000/api/order', {
       params: new HttpParams({
         fromObject: params,
       }),

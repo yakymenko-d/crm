@@ -1,0 +1,63 @@
+@import '../../../../../assets/style/variables';
+
+.dn {
+  display: none;
+}
+
+.h200 {
+  height: 200px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.ml12 {
+  margin-left: 12px;
+}
+
+.tables {
+  &-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+
+.qr {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  &_codes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 6px;
+
+      & > p {
+        text-transform: capitalize;
+        color: var(--textColor);
+      }
+    }
+
+    & > img {
+      cursor: pointer;
+      margin-bottom: 6px;
+    }
+
+    & > i {
+      position: absolute;
+      right: 0;
+    }
+  }
+}

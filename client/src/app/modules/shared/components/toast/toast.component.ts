@@ -66,7 +66,6 @@ export class ToastComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         console.log(res);
-
         this.toasts = res;
       });
   }

@@ -15,8 +15,8 @@ import {
   PointElement,
 } from 'chart.js';
 
-import { AnalyticsPage } from '../modules/shared/interfaces';
-import { AnalyticsService } from '../modules/shared/services/analytics.service';
+import { AnalyticsPage } from '@shared/interfaces';
+import { AnalyticsService } from '@shared/services/analytics.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -118,13 +118,6 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
   createChartConfig(
     configData: ChartConfiguration<'line'>,
   ): ChartConfiguration {
-    console.log(configData);
-    console.log(
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--textColor')
-        .trim(),
-    );
-
     return {
       type: 'line',
       options: {

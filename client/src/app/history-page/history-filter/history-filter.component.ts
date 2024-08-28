@@ -10,9 +10,9 @@ import {
 import {
   MaterialDatepicker,
   MaterialService,
-} from '../../modules/shared/classes/material.service';
+} from '@shared/classes/material.service';
 
-import { Filter } from '../../modules/shared/interfaces';
+import { Filter } from '@shared/interfaces';
 
 @Component({
   selector: 'app-history-filter',

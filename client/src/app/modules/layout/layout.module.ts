@@ -4,7 +4,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SanitizerPipeModule } from '../shared/pipes/sanitizer/sanitizer-pipe.module';
+import { SanitizerPipeModule } from '@shared/pipes/sanitizer/sanitizer-pipe.module';
+import { SettingsModule } from '../settings/settings.module';
 import { TogglerComponent } from './components/toggler/toggler.component';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     SanitizerPipeModule,
     LayoutRoutingModule,
+    SettingsModule
   ],
   declarations: [LayoutComponent, HeaderComponent, TogglerComponent],
   exports: [LayoutComponent, HeaderComponent, TogglerComponent],

@@ -2,11 +2,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 
-import { MaterialService } from '../../modules/shared/classes/material.service';
+import { MaterialService } from '@shared/classes/material.service';
 import { Observable } from 'rxjs/index';
 import { OrderService } from '../order.service';
-import { Position } from '../../modules/shared/interfaces';
-import { PositionsService } from '../../modules/shared/services/positions.service';
+import { Position } from '@shared/interfaces';
+import { PositionsService } from '@shared/services/positions.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

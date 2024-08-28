@@ -1,9 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule,
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { AnalyticsPageComponent } from './analytics-page/analytics-page.component';
@@ -19,88 +15,76 @@ import { HistoryFilterComponent } from './history-page/history-filter/history-fi
 import { HistoryListComponent } from './history-page/history-list/history-list.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { LayoutModule } from './modules/layout/layout.module';
-import { LoaderComponent } from './modules/shared/components/loader/loader.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { NgModule } from '@angular/core';
 import { OrderCategoriesComponent } from './order-page/order-categories/order-categories.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { OrderPositionsComponent } from './order-page/order-positions/order-positions.component';
 import { OverviewPageComponent } from './overview-page/overview-page.component';
 import { PositionsFormComponent } from './categories-page/categories-form/positions-form/positions-form.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SanitizerPipeModule } from './modules/shared/pipes/sanitizer/sanitizer-pipe.module';
+import { SanitizerPipeModule } from '@shared/pipes/sanitizer/sanitizer-pipe.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SettingsEffects } from '@store/effects/settings.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { ToastComponent } from './modules/shared/components/toast/toast.component';
-import { TokenInterceptor } from './modules/shared/classes/token.interceptor';
+import { ToastComponent } from '@shared/components/toast/toast.component';
+import { TokenInterceptor } from '@shared/classes/token.interceptor';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { UserEffects } from './store/effects/users.effects';
+import { UserEffects } from '@store/effects/users.effects';
 import { environment } from '../environments/environment';
 import { reducers } from './store';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    StoreModule.forRoot({}),
-    StoreModule.forFeature('app-state', reducers),
-    StoreDevtoolsModule.instrument({
-      maxAge: 100,
-      logOnly: environment.production,
-    }),
-    EffectsModule.forRoot([UserEffects]),
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    AuthModule,
-    LayoutModule,
-    SanitizerPipeModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  declarations: [
-    AppComponent,
-    OverviewPageComponent,
-    AnalyticsPageComponent,
-    HistoryPageComponent,
-    OrderPageComponent,
-    CategoriesPageComponent,
-    LoaderComponent,
-    CategoriesFormComponent,
-    PositionsFormComponent,
-    OrderCategoriesComponent,
-    OrderPositionsComponent,
-    HistoryListComponent,
-    HistoryFilterComponent,
-    ToastComponent,
-    ProfileComponent,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      multi: true,
-      useClass: TokenInterceptor,
-    },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        OverviewPageComponent,
+        AnalyticsPageComponent,
+        HistoryPageComponent,
+        OrderPageComponent,
+        CategoriesPageComponent,
+        LoaderComponent,
+        CategoriesFormComponent,
+        PositionsFormComponent,
+        OrderCategoriesComponent,
+        OrderPositionsComponent,
+        HistoryListComponent,
+        HistoryFilterComponent,
+        ToastComponent,
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        StoreModule.forRoot({}),
+        StoreModule.forFeature('app-state', reducers),
+        StoreDevtoolsModule.instrument({
+            maxAge: 100,
+            logOnly: environment.production,
+            connectInZone: true}),
+        EffectsModule.forRoot([UserEffects, SettingsEffects]),
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AuthModule,
+        LayoutModule,
+        SanitizerPipeModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+        }),
+    ], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            multi: true,
+            useClass: TokenInterceptor,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient) {

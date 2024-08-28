@@ -17,7 +17,16 @@
     </div>
   </div>
   <ng-template #empty>
-    <div class="center">{{ 'ORDERS.no-categories' | translate }}</div>
+    <div class="empty">
+      <img
+        class="empty_img"
+        src="../../assets/icons/empty.png"
+        alt="Empty"
+      />
+      <span class="empty_message">{{
+        'ORDERS.no-items' | translate
+      }}</span>
+  </div>
   </ng-template>
 </div>
 
