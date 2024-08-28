@@ -8,14 +8,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthService } from '@shared/services/auth.service';
 import { EMAIL_VALIDATOR } from '../../../../constants/general.constants';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { ToastService } from '../../../shared/services/toast.service';
+import { ToastService } from '@shared/services/toast.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from 'src/app/modules/shared/interfaces';
-import { getMe } from 'src/app/store/actions/users.action';
 
 @Component({
   selector: 'sign-in',
@@ -30,8 +28,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   aSub: Subscription;
-  // changedAuthType = false;
-  // public updatePage = false;
+
   public lang: string;
   public showPassword = false;
 
@@ -59,8 +56,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe((params: Params) => {
-      console.log(params);
-
       if (params['registered']) {
         let newToast = {
           type: 'success',
@@ -93,14 +88,6 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   changeAuthType() {
-    // this.updatePage.emit(true);
-    //   setTimeout(() => {
-    //     this.updatePage.emit(false);
-    //   }, 500)
-
-    // this.changedAuthType = true;
-    console.log(123);
-
     this.router.navigate(['/', 'auth', 'sign-up']);
   }
 
@@ -111,17 +98,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.form.disable();
 
-    // const input: User = {
-    //   email: this.form.value.email,
-    //   password: this.form.value.password
-    // }
-
-    // this.store.dispatch(getMe({input}));
-    // this.router.navigate(['/overview']);
-    // this.form.enable()
-
     this.aSub = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/overview']),
+      () => this.router.navigate(['/', 'overview']),
       (err) => {
         let newToast = {
           type: 'error',

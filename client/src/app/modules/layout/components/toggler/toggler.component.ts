@@ -1,6 +1,6 @@
 import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ThemeTogglerService } from '../../../shared/services/theme-toggler.service';
+import { ThemeTogglerService } from '@shared/services/theme-toggler.service';
 
 @Component({
   selector: 'theme-toggler',
@@ -37,7 +37,7 @@ export class TogglerComponent {
       // DARK MODE
       this.renderer.addClass(document.body, 'dark-mode');
       this.themeWrapper.style.setProperty('--background', '#1F1F1F');
-      this.themeWrapper.style.setProperty('--sidebarBackground', '#292F38');
+      this.themeWrapper.style.setProperty('--sidebarBackground', '#000000');
       this.themeWrapper.style.setProperty('--outletBackground', '#292F38');
       this.themeWrapper.style.setProperty('--textColor', '#ffffff');
       this.themeWrapper.style.setProperty(

@@ -79,3 +79,20 @@ export interface ToastItem {
   text: string;
   status: number;
 }
+
+export interface Settings {
+  restaurantName: string;
+  url: string;
+  image: string;
+  mainColor?: string;
+  secondaryColor?: string;
+  _id?: string; 
+}
+
+export interface QrCode {
+  url: string;
+  qr: string;
+  title: string;
+  order: number;
+  _id?: string;
+}

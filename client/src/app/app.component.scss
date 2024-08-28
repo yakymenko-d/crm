@@ -35,6 +35,12 @@
     border: none;
     padding: 8px 12px;
     font-size: 14px;
+
+    &:disabled {
+      background-color: $dark-grey !important;
+      opacity: 0.7;
+      pointer-events: none;
+    }
   }
 }
 

@@ -20,10 +20,10 @@ module.exports.getByUserId = async function(req, res) {
 
 module.exports.update = async function(req, res) {
     try {
-      const user = await Position.findOneAndUpdate(
+      const user = await Users.findOneAndUpdate(
         { _id: req.params.id },
         { $set: req.body },
-        { new: true, upsert: true }
+        { new: true }
       )
 
       if (!user) {

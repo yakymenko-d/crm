@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ToastService } from '../../../shared/services/toast.service';
+import { ToastService } from '@shared/services/toast.service';
 
 @Component({
   selector: 'sign-up',
@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.form.disable();
     this.aSub = this.auth.register(this.form.value).subscribe(
       () => {
-        this.router.navigate(['/overview'], {
+        this.router.navigate(['/', 'overview'], {
           queryParams: {
             registered: true,
           },

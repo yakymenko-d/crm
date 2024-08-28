@@ -6,14 +6,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+
+import { AnalyticsService } from '@shared/services/analytics.service';
 import {
   MaterialInstance,
-  MaterialService,
-} from '../modules/shared/classes/material.service';
-
-import { AnalyticsService } from '../modules/shared/services/analytics.service';
+} from '@shared/classes/material.service';
 import { Observable } from 'rxjs/index';
-import { OverviewPage } from '../modules/shared/interfaces';
+import { OverviewPage } from '@shared/interfaces';
 
 @Component({
   selector: 'app-overview-page',
@@ -28,7 +27,9 @@ export class OverviewPageComponent implements OnInit, OnDestroy, AfterViewInit {
   today = new Date();
   yesterday = new Date();
 
-  constructor(private service: AnalyticsService) {}
+  constructor(
+    private service: AnalyticsService
+  ) {}
 
   ngOnInit() {
     this.data$ = this.service.getOverview();

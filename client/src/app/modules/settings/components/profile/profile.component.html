@@ -38,13 +38,13 @@
           <div>
             <!-- FIRST NAME -->
             <label for="pos-firstName">{{
-              'CATEGORIES.name-placeholder' | translate
+              'PROFILE.first-name' | translate
             }}</label>
             <input
               formControlName="firstName"
               id="pos-firstName"
               class="form-input"
-              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+              [placeholder]="'PROFILE.first-name-placeholder' | translate"
             />
             <span
               *ngIf="
@@ -52,20 +52,20 @@
               "
               class="helper-text red-text"
             >
-              {{ 'CATEGORIES.name' | translate }}
+              {{ 'PROFILE.required-field' | translate }}
             </span>
             <!-- FIRST NAME -->
           </div>
           <div>
             <!-- LAST NAME -->
             <label for="pos-lastName">{{
-              'CATEGORIES.name-placeholder' | translate
+              'PROFILE.last-name' | translate
             }}</label>
             <input
               formControlName="lastName"
               id="pos-lastName"
               class="form-input"
-              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+              [placeholder]="'PROFILE.last-name-placeholder' | translate"
             />
             <span
               *ngIf="
@@ -73,41 +73,41 @@
               "
               class="helper-text red-text"
             >
-              {{ 'PROFILE.last-name' | translate }}
+              {{ 'PROFILE.required-field' | translate }}
             </span>
             <!-- LAST NAME -->
           </div>
           <div>
             <!-- ROLE -->
             <label for="pos-role">{{
-              'CATEGORIES.name-placeholder' | translate
+              'PROFILE.role' | translate
             }}</label>
-            <input
-              formControlName="role"
-              id="pos-role"
-              class="form-input"
-              [placeholder]="'CATEGORIES.name-placeholder' | translate"
-            />
+            <select formControlName="role" id="pos-role" class="form-input">
+              <option value="" disabled>{{'PROFILE.role-placeholder' | translate}}</option>
+              <option *ngFor="let role of roles" [value]="role.value">
+                {{ role.label | translate | titlecase }}
+              </option>
+            </select>
             <span
               *ngIf="
                 form.get('role').invalid && form.get('role').touched
               "
               class="helper-text red-text"
             >
-              {{ 'PROFILE.last-name' | translate }}
+              {{ 'PROFILE.required-field' | translate }}
             </span>
             <!-- ROLE -->
           </div>
           <div>
             <!-- THEME -->
             <label for="pos-theme">{{
-              'CATEGORIES.name-placeholder' | translate
+              'PROFILE.theme' | translate
             }}</label>
             <input
               formControlName="theme"
               id="pos-theme"
               class="form-input"
-              [placeholder]="'CATEGORIES.name-placeholder' | translate"
+              [placeholder]="'PROFILE.theme-placeholder' | translate"
             />
             <span
               *ngIf="
@@ -115,7 +115,7 @@
               "
               class="helper-text red-text"
             >
-              {{ 'PROFILE.last-name' | translate }}
+              {{ 'PROFILE.required-field' | translate }}
             </span>
             <!-- THEME -->
           </div>
@@ -125,7 +125,7 @@
       <div class="categories-save">
         <button
           type="submit"
-          [disabled]="form.invalid || form.disabled"
+          [disabled]="(form.invalid || form.disabled) || !hasChanges"
           class="waves-effect waves-light btn green"
         >
           {{ 'CATEGORIES.save' | translate }}

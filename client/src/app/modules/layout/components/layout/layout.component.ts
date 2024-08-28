@@ -1,14 +1,21 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import {
-  Event as NavigationEvent,
+  Event,
   NavigationStart,
   Router,
 } from '@angular/router';
+import { combineLatest, filter } from 'rxjs';
 
-import { AuthService } from '../../../shared/services/auth.service';
-import { MaterialService } from '../../../shared/classes/material.service';
-import { ThemeTogglerService } from '../../../shared/services/theme-toggler.service';
-import { combineLatest } from 'rxjs';
+import { AuthService } from '@shared/services/auth.service';
+import { MaterialService } from '@shared/classes/material.service';
+import { Roles } from '../../../../constants/roles.enum';
+import { Store } from '@ngrx/store';
+import { ThemeTogglerService } from '@shared/services/theme-toggler.service';
+import { TranslateService } from '@ngx-translate/core';
+import { getMe } from '@store/actions/users.action';
+import { isDefined } from '@globals/helpers/operators';
+import { selectMe } from '@store/selectors/users.selector';
+import { selectSettingsLogo } from '@store/selectors/settings.selector';
 
 @Component({
   selector: 'layout',
@@ -16,6 +23,9 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements AfterViewInit {
+  user$ = this.store.select(selectMe).pipe(filter(isDefined));
+  logo$ = this.store.select(selectSettingsLogo).pipe(filter(isDefined));
+
   dashboardIcon: string;
   analyticsIcon: string;
   historyIcon: string;
@@ -29,16 +39,21 @@ export class LayoutComponent implements AfterViewInit {
   theme: string;
   currentUrl: string;
   screenLocked: boolean = false;
+  userRole!: string;
+  translatedRole!: string;
 
   @ViewChild('floatingRef') floatingRef: ElementRef;
 
-  links: { url: string[]; name: string; img: string }[];
+  links: { url: string[]; name: string; img: string, acces: Roles[] }[];
 
   constructor(
-    private auth: AuthService,
-    private router: Router,
-    private themeToggler: ThemeTogglerService,
+    private readonly auth: AuthService,
+    private readonly router: Router,
+    private readonly themeToggler: ThemeTogglerService,
+    private readonly store: Store,
+    private readonly translateService: TranslateService,
   ) {
+    this.store.dispatch(getMe()); 
     this.currentUrl = this.router.url.replace('/', '');
 
     combineLatest([this.themeToggler.itemValue, this.router.events]).subscribe(
@@ -80,47 +95,57 @@ export class LayoutComponent implements AfterViewInit {
             url: ['/', 'overview'],
             name: 'DASHBOARD.overview',
             img: this.dashboardIcon,
+            acces: [Roles.OWNER, Roles.ADMIN]
           },
           {
             url: ['/', 'analytics'],
             name: 'DASHBOARD.analytics',
             img: this.analyticsIcon,
+            acces: [Roles.OWNER, Roles.ADMIN]
           },
           {
             url: ['/', 'history'],
             name: 'DASHBOARD.history',
             img: this.historyIcon,
+            acces: [Roles.OWNER, Roles.ADMIN, Roles.CHEF, Roles.COOKER, Roles.WAITER, Roles.BARMEN]
           },
           {
             url: ['/', 'order'],
             name: 'DASHBOARD.add-order',
             img: this.orderIcon,
+            acces: [Roles.OWNER, Roles.ADMIN, Roles.WAITER, Roles.BARMEN]
           },
           {
             url: ['/', 'categories'],
             name: 'DASHBOARD.categories',
             img: this.categoriesIcon,
+            acces: [Roles.OWNER, Roles.ADMIN]
           },
         ];
       },
     );
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     MaterialService.initializeFloatingButton(this.floatingRef);
+    this.user$.subscribe(({role}) => this.translateRole(role))
   }
 
-  logout(event: Event) {
-    //event.preventDefault()
+  logout(event: Event): void {
     this.auth.logout();
     this.router.navigate(['auth', 'sign-in']);
   }
 
-  lockScreen() {
+  lockScreen(): void {
     this.screenLocked = !this.screenLocked;
 
     if (this.screenLocked) {
       this.lockIcon = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="#c13429" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve"><g id="XMLID_835_"><path id="XMLID_836_" d="M265,130h-15V84.999C250,38.13,211.869,0,165,0S80,38.13,80,84.999V130H65c-8.284,0-15,6.716-15,15v170c0,8.284,6.716,15,15,15h200c8.284,0,15-6.716,15-15V145C280,136.716,273.284,130,265,130z M110,84.999C110,54.673,134.673,30,165,30s55,24.673,55,54.999V130H110V84.999z M250,300H80V160h15h140h15V300z"/><path id="XMLID_840_" d="M165,190c-13.785,0-25,11.215-25,25c0,8.162,3.932,15.421,10,19.986V255c0,8.284,6.716,15,15,15s15-6.716,15-15v-20.014c6.068-4.565,10-11.825,10-19.986C190,201.215,178.785,190,165,190z"/></g></svg>`;
     }
+  }
+
+  translateRole(role: string): void {
+    this.userRole = role;
+    this.translatedRole = this.translateService.instant(`ROLES.${role}`)
   }
 }

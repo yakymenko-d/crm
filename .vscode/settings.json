@@ -1,0 +1,18 @@
+{
+  "eslint.validate": ["javascript", "typescript", "html"],
+  "eslint.options": {
+    "extensions": [".js", ".ts", "html"]
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "cucumber.features": ["cypress/integration/**/*.feature"],
+  "cucumber.glue": ["cypress/integration/**/*.ts"],
+  "cucumberautocomplete.steps": ["cypress/integration/**/*.ts"],
+  "cucumberautocomplete.syncfeatures": "cypress/integration/**/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": false,
+  "cucumberautocomplete.smartSnippets": true,
+  "cucumberautocomplete.stepsInvariants": true
+}

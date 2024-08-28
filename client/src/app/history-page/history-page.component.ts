@@ -6,13 +6,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Filter, Order } from '../modules/shared/interfaces';
+import { Filter, Order } from '@shared/interfaces';
 import {
   MaterialInstance,
   MaterialService,
-} from '../modules/shared/classes/material.service';
+} from '@shared/classes/material.service';
 
-import { OrdersService } from '../modules/shared/services/orders.service';
+import { OrdersService } from '@shared/services/orders.service';
 import { Subscription } from 'rxjs';
 
 const STEP = 10;

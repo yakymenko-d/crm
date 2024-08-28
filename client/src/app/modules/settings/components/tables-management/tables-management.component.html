@@ -1,0 +1,70 @@
+<div class="page-wrap mt20">
+  <div class="page-title">
+    <h4 class="page-title_header">
+      {{ 'SETTINGS.table-management' | translate }}
+    </h4>
+  </div>
+
+  <div class="page-content" *ngIf="user$ | async as user">
+    <ng-container *ngIf="qrCodes$ | async as QRs">
+      <form class="tables" [formGroup]="form">
+        <div class="tables-wrap">
+          <div class="tables-form">
+            <div>
+              <label for="pos-tableCount">{{
+                'SETTINGS.tables-count' | translate
+              }}</label>
+              <input
+                type="number"
+                formControlName="tableCount"
+                id="pos-tableCount"
+                class="form-input"
+              />
+              <span
+                *ngIf="
+                  form.get('tableCount').invalid && form.get('tableCount').touched
+                "
+                class="helper-text red-text"
+              >
+                {{ 'PROFILE.required-field' | translate }}
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <button
+              [disabled]="(form.invalid || form.disabled) || !hasChanges"
+              class="waves-effect waves-light btn green"
+              (click)="generateQRCodes()"
+            >
+              {{ 'SETTINGS.generate-qr' | translate }}
+            </button>
+            <button
+              [disabled]="(form.invalid || form.disabled) || (!QRs.length || hasChanges)"
+              class="waves-effect waves-light btn green ml12"
+              (click)="downloadPDF()"
+            >
+              {{ 'SETTINGS.download' | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div *ngIf="QRs.length > 0" class="qr">
+        <div class="qr_codes" *ngFor="let qrCode of QRs; let i = index">
+          <div class="qr_codes-title">
+            <p>{{ qrCode.title }}</p>
+            <i
+              class="material-icons pointer delete-btn"
+              (click)="deleteQr(qrCode)"
+              >delete</i
+            >
+          </div>
+          <img [src]="qrCode.qr" alt="QR code" [id]="'qr-code-' + (i + 1)" (click)="createDownloadFile(i)">
+          
+          <a [routerLink]="qrCode.url">link</a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

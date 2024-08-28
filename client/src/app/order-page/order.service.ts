@@ -1,4 +1,4 @@
-import { OrderPosition, Position } from '../modules/shared/interfaces';
+import { OrderPosition, Position } from '@shared/interfaces';
 
 import { Injectable } from '@angular/core';
 

@@ -9,12 +9,12 @@ import {
 import {
   MaterialInstance,
   MaterialService,
-} from '../modules/shared/classes/material.service';
+} from '@shared/classes/material.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { Order, OrderPosition } from '../modules/shared/interfaces';
+import { Order, OrderPosition } from '@shared/interfaces';
 
 import { OrderService } from './order.service';
-import { OrdersService } from '../modules/shared/services/orders.service';
+import { OrdersService } from '@shared/services/orders.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 

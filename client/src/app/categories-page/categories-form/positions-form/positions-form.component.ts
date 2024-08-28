@@ -11,10 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   MaterialInstance,
   MaterialService,
-} from '../../../modules/shared/classes/material.service';
+} from '@shared/classes/material.service';
 
-import { Position } from '../../../modules/shared/interfaces';
-import { PositionsService } from '../../../modules/shared/services/positions.service';
+import { Position } from '@shared/interfaces';
+import { PositionsService } from '@shared/services/positions.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

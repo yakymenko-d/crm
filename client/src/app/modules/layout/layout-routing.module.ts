@@ -10,14 +10,15 @@ import { OrderCategoriesComponent } from '../../order-page/order-categories/orde
 import { OrderPageComponent } from '../../order-page/order-page.component';
 import { OrderPositionsComponent } from '../../order-page/order-positions/order-positions.component';
 import { OverviewPageComponent } from '../../overview-page/overview-page.component';
-import { ProfileComponent } from '../../profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'profile', component: ProfileComponent },
+      { path: 'settings',  loadChildren: () =>
+        import('./../../modules/settings/settings.module').then((m) => m.SettingsModule)
+      },
       { path: 'overview', component: OverviewPageComponent },
       { path: 'analytics', component: AnalyticsPageComponent },
       { path: 'history', component: HistoryPageComponent },

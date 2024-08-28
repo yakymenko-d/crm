@@ -8,10 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { CategoriesService } from '../../modules/shared/services/categories.service';
-import { Category } from '../../modules/shared/interfaces';
+import { CategoriesService } from '@shared/services/categories.service';
+import { Category } from '@shared/interfaces';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MaterialService } from '../../modules/shared/classes/material.service';
+import { MaterialService } from '@shared/classes/material.service';
 import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';

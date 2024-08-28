@@ -38,7 +38,16 @@
       </div>
     </div>
     <ng-template #empty>
-      <div class="center">{{ 'HISTORY.no-orders' | translate }}</div>
+      <div class="empty">
+        <img
+          class="empty_img"
+          src="../../assets/icons/empty.png"
+          alt="Empty"
+        />
+        <span class="empty_message">{{
+          'HISTORY.no-orders' | translate
+        }}</span>
+      </div>
     </ng-template>
   </div>
 

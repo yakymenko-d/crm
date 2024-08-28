@@ -9,9 +9,9 @@ import {
 import {
   MaterialInstance,
   MaterialService,
-} from '../../modules/shared/classes/material.service';
+} from '@shared/classes/material.service';
 
-import { Order } from '../../modules/shared/interfaces';
+import { Order } from '@shared/interfaces';
 
 @Component({
   selector: 'app-history-list',

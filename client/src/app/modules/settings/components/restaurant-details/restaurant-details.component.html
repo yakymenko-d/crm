@@ -1,0 +1,127 @@
+<div class="page-wrap mt20">
+  <div class="page-title">
+    <h4 class="page-title_header">
+      {{ 'SETTINGS.details' | translate }}
+    </h4>
+  </div>
+
+  <div class="page-content" *ngIf="user$ | async as user">
+    <ng-container *ngIf="settings$ | async as settings">
+      <form class="categories" [formGroup]="form" (ngSubmit)="onSubmit(user)">
+        <div class="categories-wrap">
+          <div class="center categories-image">
+            <img
+              *ngIf="imagePreview"
+              class="responsive-img h200"
+              [src]="imagePreview"
+            />
+            <div>
+              <!-- LOGO -->
+              <input
+                type="file"
+                class="dn"
+                (change)="onFileUpload($event)"
+                #input
+              />
+              <button
+                (click)="triggerClick()"
+                [disabled]="form.disabled"
+                type="button"
+                class="waves-effect waves-light btn orange lighten-2 mb2"
+              >
+                <i class="material-icons left">backup</i>
+                {{ 'PROFILE.upload-image' | translate }}
+              </button>
+              <!-- LOGO -->
+            </div>
+          </div>
+          <div class="categories-form">
+            <div>
+              <!-- RESTAURANT NAME -->
+              <label for="pos-restaurantName">{{
+                'SETTINGS.restaurant-name' | translate
+              }}</label>
+              <input
+                formControlName="restaurantName"
+                id="pos-restaurantName"
+                class="form-input"
+              />
+              <span
+                *ngIf="
+                  form.get('restaurantName').invalid && form.get('restaurantName').touched
+                "
+                class="helper-text red-text"
+              >
+                {{ 'PROFILE.required-field' | translate }}
+              </span>
+              <!-- RESTAURANT NAME -->
+            </div>
+            <div>
+              <!-- URL -->
+              <label for="pos-url">{{
+                'SETTINGS.url' | translate
+              }}</label>
+              <input
+                formControlName="url"
+                id="pos-url"
+                class="form-input"
+              />
+              <span
+                *ngIf="
+                  form.get('url').invalid && form.get('url').touched
+                "
+                class="helper-text red-text"
+              >
+                {{ 'PROFILE.required-field' | translate }}
+              </span>
+              <!--URL -->
+            </div>
+          </div>
+        </div>
+  
+        <div class="categories-save">
+          <button
+            type="submit"
+            [disabled]="(form.invalid || form.disabled) || !hasChanges || (!this.imagePreview || this.imagePreview === savedSettings.image)"
+            class="waves-effect waves-light btn green"
+          >
+            {{ 'CATEGORIES.save' | translate }}
+          </button>
+        </div>
+      </form>
+    </ng-container>
+
+    <div class="page-title">
+      <h4 class="page-title_header">
+        {{ 'SETTINGS.select-colors' | translate }}
+      </h4>
+    </div>
+
+    <div class="colorpicker">
+      <div class="colorpicker-wrap">
+        <p class="colorpicker-title">{{ 'SETTINGS.main-color' | translate }}</p>
+        <input
+          class="colorpicker-input"
+          [(colorPicker)]="mainColor"
+          [cpWidth]="'300px'"
+          [cpOutputFormat]="'hex'"
+          [cpAlphaChannel]="'disabled'"
+          [style.background]="mainColor"
+          (colorPickerChange)="handleMainColor($event)" 
+          readonly />
+      </div>
+      
+      <div class="colorpicker-wrap">
+        <p class="colorpicker-title">{{ 'SETTINGS.secondary-color' | translate }}</p>
+        <input
+          class="colorpicker-input"
+          [(colorPicker)]="secondaryColor"
+          [cpWidth]="'300px'"
+          [cpOutputFormat]="'hex'"
+          [cpAlphaChannel]="'disabled'"
+          [style.background]="secondaryColor"
+          readonly />
+      </div>
+    </div>
+  </div>
+</div>

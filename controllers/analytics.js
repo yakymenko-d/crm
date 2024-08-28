@@ -79,7 +79,7 @@ module.exports.overview = async function(req, res) {
           percent: Math.abs(+yesterdayGainPercent),
           compare: Math.abs(+compareYesterdayGain),
           dayGain: +yesterdayGain,
-          todayIsHigher: +yesterdayGainPercent > 0
+          isHigher: +yesterdayGainPercent > 0
         },
         orders: {
           percent: Math.abs(+yesterdayOrdersPercent),
@@ -98,7 +98,6 @@ module.exports.analytics = async function(req, res) {
   try {
     const allOrders = await Order.find({user: req.user.id}).sort({date: 1});
     const ordersMap = getOrdersMap(allOrders);
-    // console.log(ordersMap);
 
     const average = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2);
     
